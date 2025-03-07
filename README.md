@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# Untitled library app
 
-First, run the development server:
+This project is a personal library management application.
+
+
+## Features
+
+- **Search Books**: Users can search for books via the Google Books API and view details.
+- **Shelves**: Users can add books to their personal library and track their reading state (read, want to read, currently reading).
+- **Lending Status**: Users can manage due dates of borrowed books and keep notes regarding books lent out from their personal library.
+- **User Preferences**: Users can apply light/dark mode.
+
+
+## Tech Stack
+
+- **Next.js 15 (App Router)**
+- **TypeScript**
+- **React**
+- **Google Books API**
+- **Custom Backend API**
+## Run Locally
+
+Once the dependencies are installed, you can start the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  npm run start
+  # or
+  yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Navigate to http://localhost:3000 in your browser to see the app running.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## API Reference
 
-## Learn More
+#### Get book details
 
-To learn more about Next.js, take a look at the following resources:
+```http
+  GET /api/book/${id}
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `id` | `string` | **Required**. The Google Books ID of the book to fetch details for |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Roadmap
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Milestone 1
+- [ ] Wishlists and purchasing links
+- [ ] Private reviews
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Milestone 2
+- [ ] Reading goals
+- [ ] Book import (Goodreads, etc)
+
+#### Milestone 3
+- [ ] Analytics
+- [ ] Barcode scanner
+
+
+## Contributing
+
+This project is closed-source. Contributions, forking, or redistribution are not allowed at this time. However, feel free to reach out for any inquiries or potential collaboration opportunities.
