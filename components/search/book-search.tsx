@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { searchBooks } from "@/lib/openLibrary";
+import { searchBooks } from "@/lib/booksapi";
 import { BookInfo } from "@/types/book";
 import BooksList from "../books/books-list";
 import { Search } from "lucide-react";
@@ -18,10 +18,10 @@ const BookSearch = () => {
     setLoading(true);
     const res = await searchBooks(query, offset);
     setResults((prev) => {
-      setOffset(prev.length + res.docs.length);
-      return [...prev, ...res.docs];
+      setOffset(prev.length + res.items.length);
+      return [...prev, ...res.items];
     });
-    res.num_found > results.length ? setLoadmore(true) : setLoadmore(false);
+    res.totalItems > results.length ? setLoadmore(true) : setLoadmore(false);
     setLoading(false);
   };
 

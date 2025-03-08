@@ -1,9 +1,8 @@
-import { BookInfo } from "@/types/book";
 import { notFound } from "next/navigation";
 
 const Book = async ({ params }: { params: { id: string } }) => {
   const {id} = await params;
-  const res = await fetch(`http://localhost:3000/api/openlibrary/${id}`);
+  const res = await fetch(`http://localhost:3000/api/booksapi/${id}`);
   const book = await res.json();
 
   if (!book || book.error) notFound();
