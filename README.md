@@ -55,7 +55,7 @@ Navigate to http://localhost:3000 in your browser to see the app running.
 - [ ] Reading goals
 - [ ] Book import (Goodreads, etc)
 
-#### Milestone 3
+### Milestone 3
 - [ ] Analytics
 - [ ] Barcode scanner
 

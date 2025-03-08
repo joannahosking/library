@@ -1,5 +1,3 @@
-import { GoogleBook } from "@/types/book";
-
 export async function searchBooks(query: string, startIndex: number = 0) {
   if (!query) return { totalItems: 0 };
 

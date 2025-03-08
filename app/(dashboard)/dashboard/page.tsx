@@ -1,11 +1,9 @@
 // import BooksList from '@/components/books/books-list';
-import BookSearch from "@/components/search/book-search";
 
 export default function Shelf() {
   return (
     <>
-      <h1>Shelf</h1>
-      <BookSearch />
+      <h1>Home</h1>
       <section>
         <h2>Currently Reading (#)</h2>
       </section>

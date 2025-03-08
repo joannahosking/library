@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { searchBooks } from "@/lib/googleBooks";
 import { GoogleBook } from "@/types/book";
 import BooksList from "../books/books-list";
+import { Search } from "lucide-react";
 
 const BookSearch = () => {
   const [query, setQuery] = useState("");
@@ -26,10 +27,6 @@ const BookSearch = () => {
   };
 
   useEffect(() => {
-    console.log("updating start index");
-  }, [startIndex]);
-
-  useEffect(() => {
     setStartIndex(0);
     setResults([]);
     setLoadmore(false);
@@ -45,7 +42,9 @@ const BookSearch = () => {
           placeholder="Search books..."
           defaultValue={query}
         />
-        <button type="submit">Search</button>
+        <button type="submit">
+          <Search size={18} />
+        </button>
       </form>
 
       {loading && <p>Loading...</p>}
