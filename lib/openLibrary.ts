@@ -1,14 +1,14 @@
-export async function searchBooks(query: string, startIndex: number = 0) {
+export async function searchBooks(query: string, offset: number = 0) {
   if (!query) return { totalItems: 0 };
 
   const searchParams = new URLSearchParams({
     q: encodeURIComponent(query),
-    maxResults: "10",
-    startIndex: startIndex.toString(),
+    limit: "10",
+    offset: offset.toString(),
   } as Record<string, string>);
 
   const res = await fetch(
-    `https://www.googleapis.com/books/v1/volumes?${searchParams}`
+    `https://openlibrary.org/search.json?${searchParams}`
   );
 
   const data = await res.json();

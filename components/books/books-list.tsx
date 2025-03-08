@@ -1,7 +1,7 @@
-import { GoogleBook } from "@/types/book";
+import { BookInfo } from "@/types/book";
 import BookCard from "./book-card";
 
-const BooksList = ({books}: {books: GoogleBook[]}) => {
+const BooksList = ({books}: {books: BookInfo[]}) => {
   return (
     <ul>
       {books.map((book, i) => (

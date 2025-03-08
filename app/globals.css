@@ -9,9 +9,9 @@
   --text-secondary: #42454D;
 
   /* Accents */
-  --accent-100: #d5a679; /* buttons and highlights */
-  --accent-200: #a67c52; /* hover states, details */
-  --accent-300: #846c5b; /* active elements, slight depth */
+  --accent-100: #E6F0EB; /* buttons and highlights */
+  --accent-200: #98B3A9; /* hover states, details */
+  --accent-300: #2F4A45; /* active elements, slight depth */
 
   /* Shadows */
   --shadow-light: 0px 4px 12px rgba(0, 0, 0, 0.08);

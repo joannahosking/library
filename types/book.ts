@@ -1,4 +1,4 @@
-// export type BookDetails = {
+// export type UserBookInfo = {
 //   id: number;
 //   google_book_id: string;
 //   user_email: string;
@@ -9,7 +9,7 @@
 //   created_at?: string;
 // };
 
-export type GoogleBook = {
+export type BookInfo = {
   kind: string;
   id: string;
   etag: string;

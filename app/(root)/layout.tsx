@@ -5,7 +5,7 @@ export default function Layout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <>
-      <Link href="/shelf">Go to shelf</Link>
+      <Link href="/dashboard">Go to dashboard</Link>
       <main>{children}</main>
     </>
   );

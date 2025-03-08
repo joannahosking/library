@@ -1,7 +1,7 @@
-import { GoogleBook } from "@/types/book";
+import { BookInfo } from "@/types/book";
 import Link from "next/link";
 
-const BookCard = ({ book }: { book: GoogleBook }) => {
+const BookCard = ({ book }: { book: BookInfo }) => {
   return (
     <Link href={`/book/${book.id}`}>
       <img

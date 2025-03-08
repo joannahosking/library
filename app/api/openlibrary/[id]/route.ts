@@ -6,7 +6,7 @@ export async function GET(
 ) {
   try {
     const { id } = params;
-    const res = await fetch(`https://www.googleapis.com/books/v1/volumes/${id}`);
+    const res = await fetch(`https://openlibrary.org/isbn/${id}`);
     if (!res.ok) {
       throw new Error("Failed to fetch book data");
     }

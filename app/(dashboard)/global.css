@@ -22,13 +22,34 @@
   }
 
   a {
+    position: relative;
+    isolation: isolate;
     color: var(--text-secondary);
     text-decoration: none;
     transition: color 0.25s ease-in-out;
 
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -8px;
+      width: calc(100% + 16px);
+      height:100%;
+      background-color: var(--neutral-100);
+      border-radius: 0.25rem;
+      opacity: 0;
+      transition: opacity 0.2s ease-in-out;
+      z-index: -1;
+      pointer-events: none;
+    }
+
     &:hover,
     &:focus-within {
-      color: var(--accent-200);
+      color: var(--accent-300);
+
+      &::after {
+        opacity: 1;
+      }
     }
   }
 
@@ -109,6 +130,14 @@
       background-color: var(--accent-100);
     }
   }
+}
+
+.search-wrapper {
+  position: relative;
+}
+
+.search-results {
+  position: absolute;
 }
 
 main {

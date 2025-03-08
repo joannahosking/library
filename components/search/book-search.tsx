@@ -1,39 +1,38 @@
 "use client";
 import { useState, useEffect } from "react";
-import { searchBooks } from "@/lib/googleBooks";
-import { GoogleBook } from "@/types/book";
+import { searchBooks } from "@/lib/openLibrary";
+import { BookInfo } from "@/types/book";
 import BooksList from "../books/books-list";
 import { Search } from "lucide-react";
 
 const BookSearch = () => {
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState<GoogleBook[]>([]);
+  const [results, setResults] = useState<BookInfo[]>([]);
   const [loading, setLoading] = useState(false);
-  const [startIndex, setStartIndex] = useState(0);
+  const [offset, setOffset] = useState(0);
   const [loadmore, setLoadmore] = useState(false);
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!query.trim()) return;
     setLoading(true);
-    console.log("startindex: " + startIndex);
-    const res = await searchBooks(query, startIndex);
+    const res = await searchBooks(query, offset);
     setResults((prev) => {
-      setStartIndex(prev.length + res.items.length);
-      return [...prev, ...res.items];
+      setOffset(prev.length + res.docs.length);
+      return [...prev, ...res.docs];
     });
-    res.totalItems > results.length ? setLoadmore(true) : setLoadmore(false);
+    res.num_found > results.length ? setLoadmore(true) : setLoadmore(false);
     setLoading(false);
   };
 
   useEffect(() => {
-    setStartIndex(0);
+    setOffset(0);
     setResults([]);
     setLoadmore(false);
   }, [query]);
 
   return (
-    <>
+    <search role="search" className="search-wrapper">
       <form onSubmit={handleSearch}>
         <input
           type="text"
@@ -46,11 +45,12 @@ const BookSearch = () => {
           <Search size={18} />
         </button>
       </form>
-
-      {loading && <p>Loading...</p>}
-      {results && <BooksList books={results} />}
-      {loadmore && <button onClick={handleSearch}>Load more</button>}
-    </>
+      <div className="search-results">
+        {loading && <p>Loading...</p>}
+        {results && <BooksList books={results} />}
+        {loadmore && <button onClick={handleSearch}>Load more</button>}
+      </div>
+    </search>
   );
 };
 
