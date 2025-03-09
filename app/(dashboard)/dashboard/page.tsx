@@ -1,6 +1,10 @@
-// import BooksList from '@/components/books/books-list';
+import BooksList from "@/components/books/BooksList";
 
-export default function Shelf() {
+const Dashboard = async () => {
+  const res = await fetch(`http://localhost:3000/api/user/books`);
+  const books = await res.json();
+  console.log(books);
+
   return (
     <>
       <h1>Home</h1>
@@ -15,4 +19,6 @@ export default function Shelf() {
       </section>
     </>
   );
-}
+};
+
+export default Dashboard;

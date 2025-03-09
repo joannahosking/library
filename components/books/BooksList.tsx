@@ -1,5 +1,5 @@
 import { BookInfo } from "@/types/book";
-import BookCard from "./book-card";
+import BookCard from "./BookCard";
 
 const BooksList = ({books}: {books: BookInfo[]}) => {
   return (

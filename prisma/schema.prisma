@@ -22,28 +22,33 @@ model User {
 
 model UserBook {
   id          String   @id @default(uuid())
-  user        User     @relation(fields: [userId], references: [id])
-  userId      String
+  user        User     @relation(fields: [userEmail], references: [email])
+  userEmail   String
 
-  olid       String   // Open Library ID (unique identifier from Open Library)
-  title      String
-  author     String
-  publishedAt DateTime?
-  thumbnail  String?  // Book cover image
-  description String? // Book description
+  googleId    String   // Google Books API ID
+  title       String
+  author      String[]
+  published   String
+  thumbnail   String?  // Book cover image
+  description String?
+  categories  String[]
+  pages       Int 
 
-  format     String   // Hardcover, Paperback, eBook, etc.
-  borrowed   Boolean  @default(false) // If the user borrowed it
-  onLoan     Boolean  @default(false) // If the user lent it out
+  format     String?   
+  borrowed   Boolean  @default(false)  
+  onLoan     Boolean  @default(false)  
   status     Status   @default(WANT_TO_READ)
-  currentPage Int?    // Reading progress
+  currentPage Int?    
 
-  dateAdded  DateTime @default(now()) // When the book was added
-  dateStarted DateTime? // When the user started reading the book
-  dateFinished DateTime? // When the user finished reading the book
+  dateAdded  DateTime @default(now()) 
+  dateStarted DateTime? 
+  dateFinished DateTime? 
 
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+
+  // Composite unique constraint
+  @@unique([googleId, userEmail])
 }
 
 enum Status {

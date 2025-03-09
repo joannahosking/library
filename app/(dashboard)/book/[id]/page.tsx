@@ -1,28 +1,31 @@
-import { notFound } from "next/navigation";
+import prisma from "@/lib/prisma";
+import { auth } from "@/auth";
+import SearchedBookDetails from "@/components/books/SearchedBookDetails";
+import { redirect } from "next/navigation";
+import OwnedBookDetails from "@/components/books/ownedBookDetails";
 
 const Book = async ({ params }: { params: { id: string } }) => {
-  const {id} = await params;
+  const session = await auth();
+  const { id } = await params;
+
+  if (!session?.user?.email) redirect("/404");
+
+  const ownedBook = await prisma.userBook.findFirst({
+    where: { googleId: id, userEmail: session.user.email },
+  });
+
+  if (ownedBook) {
+    return <OwnedBookDetails book={ownedBook} />;
+  }
+
   const res = await fetch(`http://localhost:3000/api/booksapi/${id}`);
-  const book = await res.json();
+  const googleBook = await res.json();
 
-  if (!book || book.error) notFound();
-
-  console.log(book);
+  if (!googleBook || googleBook.error) redirect("/404");
 
   return (
     <>
-      <h1>{book.volumeInfo.title}</h1>
-      <p className="author">{book.volumeInfo.authors.join(", ")}</p>
-      <ul>
-        {book.volumeInfo.categories.map((cat: string, i: number) => (
-          <li key={`category-${i}`}>{cat}</li>
-        ))}
-      </ul>
-      <p className="description">{book.volumeInfo.description}</p>
-      <img
-        src={book.volumeInfo.imageLinks.thumbnail}
-        alt={book.volumeInfo.title}
-      />
+      <SearchedBookDetails book={googleBook} />
     </>
   );
 };

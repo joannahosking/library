@@ -2,10 +2,13 @@
 import { useState, useEffect } from "react";
 import { searchBooks } from "@/lib/booksapi";
 import { BookInfo } from "@/types/book";
-import BooksList from "../books/books-list";
+import BooksList from "../books/BooksList";
 import { Search } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 const BookSearch = () => {
+  const pathname = usePathname();
+
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<BookInfo[]>([]);
   const [loading, setLoading] = useState(false);
@@ -30,6 +33,10 @@ const BookSearch = () => {
     setResults([]);
     setLoadmore(false);
   }, [query]);
+
+  useEffect(() => {
+    setQuery("");
+  }, [pathname]);
 
   return (
     <search role="search" className="search-wrapper">

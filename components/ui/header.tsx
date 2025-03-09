@@ -1,7 +1,7 @@
-import SidebarNav from "./sidebar-nav";
-import SignIn from "./sign-in";
-import SignOut from "./sign-out";
-import BookSearch from "@/components/search/book-search";
+import SidebarNav from "./SidebarNav";
+import SignIn from "./SignIn";
+import SignOut from "./SignOut";
+import BookSearch from "@/components/search/BookSearch";
 import { auth } from "@/auth";
 import Link from "next/link";
 import { UserPen } from "lucide-react";

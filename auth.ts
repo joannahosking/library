@@ -1,8 +1,6 @@
 import NextAuth, { Session, User } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import prisma from "@/lib/prisma";
 
 export const authOptions = {
   providers: [
@@ -29,18 +27,24 @@ export const authOptions = {
           });
         }
 
-        return true;
+        return user;
       } catch (error) {
         console.error("Error signing in user:", error);
-        return false;
+        return null;
       }
     },
 
-    async session({ session, user }: { session: Session; user: User }) {
-      if (user) {
-        session.user.id = user.id!;
+    async session({ session, token }: { session: Session; token: any }) {
+      if (token?.email) {
+        session.user.email = token.email;
       }
       return session;
+    },
+    async jwt({ token, user }: { token: any; user: User }) {
+      if (user) {
+        token.email = user.email;
+      }
+      return token;
     },
   },
   secret: process.env.AUTH_SECRET,
