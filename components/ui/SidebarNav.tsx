@@ -44,17 +44,17 @@ const SidebarNav = () => {
           text="Dashboard"
         />
         <SidebarNavItem
-          url="/currently-reading"
+          url="/dashboard/reading"
           icon={<BookOpenText size={16} />}
           text="Currently reading"
         />
         <SidebarNavItem
-          url="/read"
+          url="/dashboard/read"
           icon={<BookCheck size={16} />}
           text="Read"
         />
         <SidebarNavItem
-          url="/want-to-read"
+          url="/dashboard/want-to-read"
           icon={<BookMarked size={16} />}
           text="Want to read"
         />

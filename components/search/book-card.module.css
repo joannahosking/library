@@ -1,0 +1,5 @@
+.bookCard {
+    strong, span {
+        display: block;
+    }
+}

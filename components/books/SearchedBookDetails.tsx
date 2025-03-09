@@ -11,7 +11,8 @@ const SearchedBookDetails = ({ book }: { book: BookInfo }) => {
           <li key={`category-${i}`}>{cat}</li>
         ))}
       </ul>
-      <p className="description">{book.volumeInfo.description}</p>
+      <div className="description" dangerouslySetInnerHTML={{ __html: book.volumeInfo.description }} />
+      
       <img
         src={book.volumeInfo.imageLinks.thumbnail}
         alt={book.volumeInfo.title}

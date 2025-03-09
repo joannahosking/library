@@ -10,7 +10,7 @@ const OwnedBookDetails = ({ book }: { book: UserBook }) => {
           <li key={`category-${i}`}>{cat}</li>
         ))}
       </ul>
-      <p className="description">{book.description}</p>
+      <div className="description" dangerouslySetInnerHTML={{ __html: book.description as string }} />
       <img src={book.thumbnail || "/placeholder.jpg"} alt={book.title} />
 
       <section className="user-actions">

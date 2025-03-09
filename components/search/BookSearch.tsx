@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { searchBooks } from "@/lib/booksapi";
 import { BookInfo } from "@/types/book";
-import BooksList from "../books/BooksList";
+import BooksList from "./BooksList";
 import { Search } from "lucide-react";
 import { usePathname } from "next/navigation";
 

@@ -32,6 +32,8 @@ const AddBook = ({ book }: { book: BookInfo }) => {
 
       if (res.ok) {
         alert("Book added successfully");
+      } else if (res.status === 409) {
+        setError("You already have this book in your library");
       } else {
         setError(data.error || "Failed to add book");
       }

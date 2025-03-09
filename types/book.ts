@@ -1,14 +1,3 @@
-// export type UserBookInfo = {
-//   id: number;
-//   google_book_id: string;
-//   user_email: string;
-//   format?: "ebook" | "audiobook" | "physical";
-//   is_lent?: boolean;
-//   lent_to?: string;
-//   due_date?: string;
-//   created_at?: string;
-// };
-
 export type BookInfo = {
   kind: string;
   id: string;

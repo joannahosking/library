@@ -31,6 +31,12 @@ export async function POST(
   req: Request,
   { params }: { params: { id: string } }
 ) {
+  const session = await auth();
+
+  if (!session?.user?.email) {
+    return NextResponse.json({ error: "You must be logged in to add a book." });
+  }
+
   const {
     title,
     author,
@@ -41,15 +47,20 @@ export async function POST(
     pages,
   } = await req.json();
 
-  const session = await auth();
-
-  if (!session?.user?.email) {
-    return NextResponse.json({ error: "You must be logged in to add a book." });
-  }
-
   const { id } = await params;
 
   try {
+    const existingBook = await prisma.userBook.findFirst({
+      where: { userEmail: session.user.email, googleId: id },
+    });
+
+    if (existingBook) {
+      return NextResponse.json(
+        { message: "Book already in your library" },
+        { status: 409 }
+      );
+    }
+
     const newBook = await prisma.userBook.create({
       data: {
         googleId: id,
