@@ -1,0 +1,19 @@
+.bookList {
+    h2 {
+        color: var(--accent-200);
+    }
+    
+  ul {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 130px), 1fr));
+    gap: 2rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    max-width: 150px;
+  }
+}

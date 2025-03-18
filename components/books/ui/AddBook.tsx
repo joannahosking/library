@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { BookInfo } from "@/types/book";
+import { revalidateBookPage } from "@/app/actions/addBook";
 
 const AddBook = ({ book }: { book: BookInfo }) => {
   const [isAdding, setIsAdding] = useState(false);
@@ -31,7 +32,7 @@ const AddBook = ({ book }: { book: BookInfo }) => {
       const data = await res.json();
 
       if (res.ok) {
-        alert("Book added successfully");
+        await revalidateBookPage(book.id);
       } else if (res.status === 409) {
         setError("You already have this book in your library");
       } else {

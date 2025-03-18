@@ -1,7 +1,7 @@
-import { BookInfo } from "@/types/book";
+import { UserBook } from "@prisma/client";
 import BookCard from "./BookCard";
 
-const BooksList = ({books}: {books: BookInfo[]}) => {
+const BooksList = ({books}: {books: UserBook[]}) => {
   return (
     <ul>
       {books.map((book, i) => (

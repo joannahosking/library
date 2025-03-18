@@ -1,5 +1,6 @@
 import BooksList from "@/components/books/BooksList";
 import { auth } from '@/auth';
+import styles from './dashboard.module.css';
 
 const Dashboard = async () => {
   const session = await auth();
@@ -14,7 +15,7 @@ const Dashboard = async () => {
   const readBooks = await readRes.json();
 
   return (
-    <>
+    <div className={styles.bookList}>
       <h1>Home</h1>
       <section>
         <h2>Currently Reading ({readingBooks.books.length})</h2>
@@ -28,7 +29,7 @@ const Dashboard = async () => {
         <h2>Read ({readBooks.books.length})</h2>
         <BooksList books={readBooks.books} />
       </section>
-    </>
+    </div>
   );
 };
 

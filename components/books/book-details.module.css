@@ -1,0 +1,53 @@
+.bookDetails {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+}
+
+.bookCover {
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.bookAuthor {
+  color: var(--text-secondary);
+}
+
+.bookTags {
+  list-style-type: none;
+  display: flex;
+  gap: 0.375rem 0.5rem;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  font-size: 0.8rem;
+
+  li {
+    padding: 0.125em 0.5em;
+    border-radius: 0.25em;
+    background-color: var(--accent-100);
+    color: var(--accent-300);
+
+    &:not(:first-child) {
+      display: none;
+    }
+  }
+}
+
+.bookDescription {
+  margin-top: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  p + p {
+    margin-top: 1rem;
+  }
+}
+
+.userActions {
+  grid-column: 1 / -1;
+}
